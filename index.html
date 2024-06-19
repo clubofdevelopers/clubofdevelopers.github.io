@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .header {
+      font-size: 32px;
+      color: black;
+      text-align: center;
+      font-family: Verdana, sans-serif;
+    }
+
+    img {
+      width: 245px;
+      height: 245px;
+      margin: 4px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="header">Fox Images</h1>
+  <div class="container">
+    <!-- Images of foxes will appear here-->
+  </div>
+</body>
+<script>
+  debugger;
+  const container = document.querySelector('.container');
+  const URL = 'https://randomfox.ca/images';
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 123) + 1; // Adjusted max number to fit the available images
+}
+
+  function loadImages(numImages = 6) {
+    for (let i = 0; i < numImages; i++) {
+      const img = document.createElement('img');
+      img.src = `${URL}/${getRandomNumber()}.jpg`;
+      img.alt = 'Random Fox';
+      img.onerror = () => {
+        img.src = 'https://randomfox.ca/images/1.jpg'; // Default image in case of an error
+      };
+      container.appendChild(img);
+    }
+  }
+
+  loadImages();
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+      loadImages();
+    }
+  });
+</script>
+
+</html>

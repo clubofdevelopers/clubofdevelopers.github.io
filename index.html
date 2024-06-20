@@ -58,7 +58,7 @@ function getRandomNumber() {
   loadImages();
 
   window.addEventListener('scroll', () => {
-    if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
       loadImages();
     }
   });
